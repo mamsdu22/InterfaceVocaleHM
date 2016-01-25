@@ -20,7 +20,7 @@ print("Calcul des mfcc ...")
 ceps, mspec, spec = mfcc(X)
 mfccfilepath = audiofilepath.replace("sounds","mfccs")+".dat"
 print("Ecriture des resultats dans : "+mfccfilepath)
-os.makedirs(os.path.dirname(mfccfilepath))
+os.makedirs(mfccfilepath)
 f = open(mfccfilepath, "w");
 for vec in ceps:
 	for val in vec:

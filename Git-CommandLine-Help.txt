@@ -1,0 +1,20 @@
+/////////////////////////////////////////////////////////////
+//////////// Help Github command line ///////////////////////
+/////////////////////////////////////////////////////////////
+
+///Cloning a repository:
+git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+
+///Adding new content to repository:
+1) initialize the local directory as git repository (only once)
+git init
+
+2) then
+git add .
+git commit -m "First commit"
+git push origin master
+
+
+help links:
+https://help.github.com/articles/cloning-a-repository/
+https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/

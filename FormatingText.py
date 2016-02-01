@@ -69,7 +69,7 @@ for line in fileinput.FileInput(filename):
     
 
 fout.close()  
-
+os.remove(folderPath+"/output%d.txt"%(i))
 
 #print "Type the filename again:"
 #file_again = raw_input("> ")

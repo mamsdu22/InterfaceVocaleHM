@@ -1,0 +1,1 @@
+Il s'assura seulement du chiffre de la fortune.

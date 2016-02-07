@@ -50,7 +50,8 @@ if __name__=="__main__":
 	etatJobSynthetisation = 1
 	
 	# Job MFCC
-	with Pool(processes = 10): 
+	with Pool(processes = 10) as poolJobMfcc:
+		 
 
 
 

@@ -17,16 +17,18 @@ if __name__=="__main__":
 	chemin_tts1 = sys.argv[2]
 	chemin_tts2 = sys.argv[3]
 
+	dossierSentences = dossier_application + "/sentences/"
+	dossierSounds = dossier_application + "/sounds/"
+	dossierMfccs = dossier_application + "/mfccs/"
+	
 	# Job formalisation
 	etatJobFormalisation = 0
-	cmdJobFormalisation = "python FormatingText.py " + dossier_application + "/eval_text_full.txt 100"
+	cmdJobFormalisation = "python FormatingText.py " + dossier_application + "/eval_text_partial.txt 100"
 	runBashCmd(cmdJobFormalisation)
 	etatJobFormalisation = 1
 	
 	# Job synthetisation.
 	etatJobSynthetisation = 0
-	dossierSentences = dossier_application + "/sentences/"
-	dossierSounds = dossier_application + "/sounds/"
 	if not os.path.exists(dossierSounds):
 		os.makedirs(dossierSounds);
 	processes = []	
@@ -53,4 +55,27 @@ if __name__=="__main__":
 		process.join()
 
 	etatJobSynthetisation = 1
-
+	
+	# Job Mfcc
+	etatJobMfcc = 0
+	processes = []
+	if not os.path.exists(dossierMfccs):
+		os.makedirs(dossierMfccs);
+	for dossier in os.listdir(dossierMfccs):
+		chemin_dossierwav = dossierSounds + dossier + "/"
+		for fichierwav in os.listdir(chemin_fichierwav):
+			chemin_fichierwav = chemin_dossierwav + fichierwav
+			tab_cheminwav = chemin_fichierwav.split("/")
+			chemin_fichiermfcc = dossierMfccs + tab_cheminwav[len(tab_cheminwav)-2] + "/"
+			if not os.path.exists(chemin_fichiermfcc):
+				os.makedirs(chemin_fichiermfcc)
+			# Lancement Mfcc
+			cmdMfcc = "python mfcc.py " + chemin_fichierwav
+			p = Process(target=runBashCmd, args=(cmdTts1,))
+			p.start()
+			processes.append(p)
+	# Attente de l'execution de tous les threads
+	for process in processes:
+		process.join()
+			
+	etatJobMfcc = 1

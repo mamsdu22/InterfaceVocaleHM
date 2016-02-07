@@ -31,7 +31,7 @@ if __name__=="__main__":
 		runBashCmd(cmdJobFormalisation)
 		etatJobFormalisation = 1
 
-	if etape == "synthetisation":
+	if etape == "synthetisation" or etape == "formalisation":
 		# Job synthetisation.
 		etatJobSynthetisation = 0
 		if not os.path.exists(dossierSounds):
@@ -61,7 +61,7 @@ if __name__=="__main__":
 
 		etatJobSynthetisation = 1
 		
-	if etape == "mfcc":
+	if etape == "mfcc" or etape == "formalisation" or etape == "synthetisation":
 		# Job Mfcc
 		etatJobMfcc = 0
 		processes = []

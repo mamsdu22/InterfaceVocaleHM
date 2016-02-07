@@ -1,1 +1,0 @@
-Akka voulut lui crier gare et l'arrêter à tout prix, mais elle n'eut aucun moyen de le faire.

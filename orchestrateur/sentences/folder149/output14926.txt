@@ -1,1 +1,0 @@
-La vitesse de la transmission est de 250 octets par seconde.

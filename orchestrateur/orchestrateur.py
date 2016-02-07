@@ -64,7 +64,7 @@ if __name__=="__main__":
 	if not os.path.exists(dossierMfccs):
 		os.makedirs(dossierMfccs);
 	for dossier in os.listdir(dossierMfccs):
-		chemin_dossierwav = dossierSounds + dossier + "/"
+		chemin_dossierwav = dossierSounds + dossier
 		for fichierwav in os.listdir(chemin_fichierwav):
 			chemin_fichierwav = chemin_dossierwav + fichierwav
 			tab_cheminwav = chemin_fichierwav.split("/")

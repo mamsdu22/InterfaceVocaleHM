@@ -38,7 +38,7 @@ if __name__=="__main__":
 	dossierSounds = dossier_application + "/sounds/"
 	if not os.path.exists(dossierSounds):
 		os.makedirs(dossierSounds);
-	with Pool(processes == 20) as poolJobTts:
+	with Pool(processes = 20) as poolJobTts:
 		
 		for dossier in os.listdir(dossierSentences):
 			chemin_dossiertxt = dossierSentences + dossier + "/"
@@ -46,8 +46,11 @@ if __name__=="__main__":
 				chemin_fichiertxt = chemin_dossiertxt + fichiertxt
 				tab_chemintxt = chemin_fichiertxt.split("/")
 				chemin_fichierwav = dossierSounds + tab_chemintxt[len(tab_chemintxt)-2] + "/"
+				poolJobTts.apply_async(jobSynthetisation, (chemin_fichiertxt, chemin_tts1, chemin_tts2, chemin_fichierwav,)
 	etatJobSynthetisation = 1
-
+	
+	# Job MFCC
+	with Pool(processes = 10): 
 
 
 

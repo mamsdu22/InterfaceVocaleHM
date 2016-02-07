@@ -89,17 +89,21 @@ if __name__=="__main__":
 				os.makedirs(chemin_fichierwav)
 			# Envoie des donnees aux processus fils
 			if i<len(processes):
+				#print(chemin_fichiertxt)
 				process_info = processes[i]
 				process = process_info[0]
 				conn = process_info[1]
 				process.start()
 				conn.send([chemin_fichiertxt, chemin_fichierwav])
-			else:
+			else:				
 				for process_info in processes: 
 					conn = process_info[1]
 					if conn.recv() == 1: # TODO optimiser
 						conn.send([chemin_fichiertxt, chemin_fichierwav])
+						break
 			i+=1
+	for process_info in processes:
+		process_info[1].send(-1)	
 	etatJobSynthetisation = 1
 
 	# Job MFCC
@@ -131,6 +135,8 @@ if __name__=="__main__":
 					conn = process_info[1]
 					if conn.recv() == 1: # TODO optimiser
 						conn.send(chemin_fichierwav)
-				
+						break
+	for process_info in processes:
+		process_info[1].send(-1)	
 			
 	etatJobMfcc = 1

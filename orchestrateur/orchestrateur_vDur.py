@@ -1,14 +1,15 @@
 import sys
 import subprocess
 import os
-from multiprocessing import Process
+from multiprocessing import Process, Pool
+from contextlib import closing
 
 def runBashCmd(cmd=""):	
 	process = subprocess.Popen(cmd.split(), stdout=subprocess.PIPE)
 	return process.communicate()[0]
 
 #def jobSynthesation(chemin_fichiertxt="", chemin_tts1="", chemin_tts2="", chemin_fichierwav=""):
-def jobSynthesation(chemins_txtwav=[], chemin_tts1="", chemin_tts2=""):
+def jobSynthetisation(chemins_txtwav=[], chemin_tts1="", chemin_tts2=""):
 	# Lancement tts1
 	cmdTts1 = "python " + chemin_tts1 + " " + chemins_txtwav[0] + " " + chemins_txtwav[1]
 	runBashCmd(cmdTts1)
@@ -40,7 +41,7 @@ if __name__=="__main__":
 	if not os.path.exists(dossierSounds):
 		os.makedirs(dossierSounds);
 	lst_jobsynthetisation = []
-	with Pool(processes = 20) as poolJobTts:
+	with Pool(processes=20) as poolJobTts:
 		
 		for dossier in os.listdir(dossierSentences):
 			chemin_dossiertxt = dossierSentences + dossier + "/"
@@ -48,17 +49,11 @@ if __name__=="__main__":
 				chemin_fichiertxt = chemin_dossiertxt + fichiertxt
 				tab_chemintxt = chemin_fichiertxt.split("/")
 				chemin_fichierwav = dossierSounds + tab_chemintxt[len(tab_chemintxt)-2] + "/"
-				lst_jobsynthetisation.append(chemin_fichiertxt, chemin_fichierwav)
+				lst_jobsynthetisation.append([chemin_fichiertxt, chemin_fichierwav])
 				#poolJobTts.apply_async(jobSynthetisation, (chemin_fichiertxt, chemin_tts1, chemin_tts2, chemin_fichierwav,)
 	poolJobTts.map_async(jobSynthetisation, lst_jobsynthetisation)
 	etatJobSynthetisation = 1
 		
 
 	# Job MFCC
-	with Pool(processes = 10) as poolJobMfcc:
-		 
-
-
-
-
-
+	#with Pool(processes = 10) as poolJobMfcc:

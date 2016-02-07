@@ -29,10 +29,10 @@ def jobSynthetisation(conn):
 		cheminwav = recv[1]
 		print("Fichier traiter : "+chemintxt)
 		#Lancement tts1
-		cmdTts1 = "python " + chemin_tts1 + " " + chemintxt + " " + cheminwav
+		cmdTts1 = "python " + chemin_tts1 + " " + chemintxt + " " + cheminwav + " > tts1.log"
 		runBashCmd(cmdTts1)
 		# Lancement tts2
-		cmdTts2 = "python " + chemin_tts2 + " " + chemintxt + " " + cheminwav
+		cmdTts2 = "python " + chemin_tts2 + " " + chemintxt + " " + cheminwav + " > tts2.log"
 		runBashCmd(cmdTts2)
 		conn.send(1)
 		recv = conn.recv()
@@ -59,25 +59,6 @@ if __name__=="__main__":
 	dossierSounds = dossier_application + "/sounds/"
 	if not os.path.exists(dossierSounds):
 		os.makedirs(dossierSounds);
-	#lst_jobsynthetisation = []
-	
-	#for dossier in os.listdir(dossierSentences):
-	#	chemin_dossiertxt = dossierSentences + dossier + "/"
-	#	for fichiertxt in os.listdir(chemin_dossiertxt):
-	#		chemin_fichiertxt = chemin_dossiertxt + fichiertxt
-	#		tab_chemintxt = chemin_fichiertxt.split("/")
-	#		chemin_fichierwav = dossierSounds + tab_chemintxt[len(tab_chemintxt)-2] + "/"
-	#		print(chemin_fichierwav)
-	#		if not os.path.exists(chemin_fichierwav):
-	#			os.makedirs(chemin_fichierwav)
-	#		lst_jobsynthetisation.append([chemin_fichiertxt, chemin_fichierwav])
-			#poolJobTts.apply_async(jobSynthetisation, (chemin_fichiertxt, chemin_tts1, chemin_tts2, chemin_fichierwav,)
-	#poolJobTts = Pool(processes=20)
-	#print(poolJobTts.map(jobSynthetisation, lst_jobsynthetisation))
-	#poolJobTts.terminate()
-	#for arg in lst_jobsynthetisation:
-	#	jobSynthetisation(arg)
-	#etatJobSynthetisation = 1
 		
 	processes = []
 	for i in range(0,20):
@@ -106,7 +87,7 @@ if __name__=="__main__":
 					if conn.recv() == 1:
 						conn.send([chemin_fichiertxt, chemin_fichierwav])
 			i+=1
-
+	etatJobSynthetisation = 1
 
 	# Job MFCC
 	#with Pool(processes = 10) as poolJobMfcc:

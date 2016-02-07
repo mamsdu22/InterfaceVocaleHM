@@ -102,6 +102,7 @@ if __name__=="__main__":
 						conn.send([chemin_fichiertxt, chemin_fichierwav])
 						break
 			i+=1
+			print("compteur : "+str(i))
 	for process_info in processes:
 		process_info[1].send(-1)	
 	etatJobSynthetisation = 1

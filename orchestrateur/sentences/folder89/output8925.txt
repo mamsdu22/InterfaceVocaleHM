@@ -1,1 +1,0 @@
-Seulement, le nombre des chevaux n'est pas fixé et varie à l'infini.

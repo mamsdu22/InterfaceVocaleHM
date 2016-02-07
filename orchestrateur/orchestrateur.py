@@ -23,7 +23,7 @@ if __name__=="__main__":
 	runBashCmd(cmdJobFormalisation)
 	etatJobFormalisation = 1
 	
-	# Job synthetisation
+	# Job synthetisation.
 	etatJobSynthetisation = 0
 	dossierSentences = dossier_application + "/sentences/"
 	dossierSounds = dossier_application + "/sounds/"
@@ -36,6 +36,7 @@ if __name__=="__main__":
 			chemin_fichiertxt = chemin_dossiertxt + fichiertxt
 			tab_chemintxt = chemin_fichiertxt.split("/")
 			chemin_fichierwav = dossierSounds + tab_chemintxt[len(tab_chemintxt)-2] + "/"
+			print(chemin_fichierwav)
 			# Lancement tts1
 			cmdTts1 = "python " + chemin_tts1 + " " + chemin_fichiertxt + " " + chemin_fichierwav
 			p = Process(target=runBashCmd, args=(cmdTts1,))

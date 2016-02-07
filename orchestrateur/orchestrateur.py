@@ -21,6 +21,8 @@ if __name__=="__main__":
 	dossierSounds = dossier_application + "/sounds/"
 	dossierMfccs = dossier_application + "/mfccs/"
 	
+	cheminFichierEtat = dossier_application + "/orchestrateur_state.log"
+	
 	# Job formalisation
 	etatJobFormalisation = 0
 	cmdJobFormalisation = "python FormatingText.py " + dossier_application + "/eval_text_partial.txt 100"

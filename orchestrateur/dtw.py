@@ -88,7 +88,7 @@ if __name__=="__main__":
 				token = float(token)
 				mfcc1.append(token)
 			except:
-				print("failed to parse : "+token)
+				print("failed to parse : \""+token+"\"")
 		ligne = fichier_mfcc1.readline()	
 
 
@@ -100,23 +100,28 @@ if __name__=="__main__":
 				token = float(token)
 				mfcc2.append(token)
 			except:
-				print("failed to parse : "+token)
+				print("failed to parse : \""+token+"\"")
 		ligne = fichier_mfcc2.readline()
-
-	print(mfcc1)
-	print(mfcc2)
 	
-	dist, cost, path = dtw(mfcc1, mfcc2, dist=lambda mfcc1, mfcc2: norm(mfcc1 - mfcc2, ord=1))
-	#dist = 0.3	
+	#dist, cost, path = dtw(mfcc1, mfcc2, dist=lambda mfcc1, mfcc2: norm(mfcc1 - mfcc2, ord=1))
+	dist = 0.3	
 	print 'Minimum distance found:', dist
 
 	nom_mfcc1 = os.path.basename(chemin_mfcc1)
 	nom_mfcc2 = os.path.basename(chemin_mfcc2)
 
-	chemin_dtw = chemin_mfcc1.replace("mfccs", "dtw")[0:chemin_mfcc1.rindex("/")-1] + nom_mfcc1 + nom_mfcc2 + "_dtw.dat"
-	fichier_dtw = open(chemin_dtw, "w+")
+	#chemin_dtw = chemin_mfcc1.replace("mfccs", "dtw")[0:chemin_mfcc1.rindex("/")-1] + nom_mfcc1 + nom_mfcc2 + "_dtw.dat"
+	tab_cheminmfcc1 = chemin_mfcc1.split("/")
+	print tab_cheminmfcc1
+	chemin_dtw = ""	
+	for cpt in range(0, len(tab_cheminmfcc1)-2):
+		chemin_dtw += tab_cheminmfcc1[cpt] + "/"
+	chemin_dtw += tab_cheminmfcc1[len(tab_cheminmfcc1)-2] + ".dat"
+	chemin_dtw = chemin_dtw.replace("mfccs","dtw")
+	print chemin_dtw
+	fichier_dtw = open(chemin_dtw, "a")
 	
-	fichier_dtw.write(nom_mfcc1 + "\t"+ nom_mfcc2 + "\t" + str(dist))
+	fichier_dtw.write(nom_mfcc1 + ","+ nom_mfcc2 + "," + str(dist) + "\n")
 	
 
 

@@ -110,8 +110,8 @@ if __name__=="__main__":
 			cpt=0
 			# on parcourt les fichiers mfcc deux a deux
 			while cpt < len(listFichiersMfcc):
-				chemin_mfcc1 = chemin_dossiermfccs + listFichiersMfcc[cpt]
-				chemin_mfcc2 = chemin_dossiermfccs + listFichiersMfcc[cpt+1]
+				chemin_mfcc1 = dossierMfccs + listFichiersMfcc[cpt]
+				chemin_mfcc2 = dossierMfccs + listFichiersMfcc[cpt+1]
 				chemin_dtw = chemin_mfcc1.replace("mfccs","dtw")[0:chemin_mfcc1.rindex("/")-1]
 				if not os.path.exists(chemin_dtw):
 					os.makedirs(chemin_dtw)

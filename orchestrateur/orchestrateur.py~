@@ -18,7 +18,7 @@ def runBashCmd(cmd=""):
 
 def saveApplicationState():
 	fichier = open(cheminFichierEtat, "w")
-	fichier.write("# Etat sous la forme : <nom_job>:(0 : job inacheve|1 : job acheve)\n")
+	fichier.write("# Etat sous la forme : <nom_job>:(0 : job inacheve|1 : job acheve)")
 	fichier.write("formalisation:"+str(etatJobFormalisation)+"\n")	
 	fichier.write("synthetisation:"+str(etatJobSynthetisation)+"\n")
 	fichier.write("mfcc:"+str(etatJobMfcc)+"\n")

@@ -1,0 +1,5 @@
+# Etat sous la forme : <nom_job>:(0 : job inacheve|1 : job acheve)formalisation:1
+synthetisation:1
+mfcc:1
+dtw:1
+ranking:1

@@ -58,7 +58,7 @@ if __name__=='__main__':
 	#classement des donnees selon leurs distances
 	dtwdatas.sort(cmp=comp)
 	#ecriture du classement dans un fichier
-	print("ranking : "+dtwfilepath+".sorted")
+	print("ranking : "+dtwfilepath+".sorted"
 	sorteddtwfile = open(dtwfilepath+".sorted","w")
 	for data in dtwdatas:
 		print(data)

@@ -48,7 +48,7 @@ if __name__=='__main__':
 	#recuperation du contenu du fichier contenant les dtw
 	dtwfilepath = sys.argv[1]
 	dtwfile = open(dtwfilepath, "r")
-	dtwfilelines = dtwfile.read().split("\n")
+	dtwfilelines = dtwfile.read().split("\
 	dtwdatas = []
 	#mise en forme des donnees afin de pouvoir les manipuler dans le programme
 	for line in dtwfilelines:
@@ -58,8 +58,7 @@ if __name__=='__main__':
 	#classement des donnees selon leurs distances
 	dtwdatas.sort(cmp=comp)
 	#ecriture du classement dans un fichier
-	print("ranking : "+dtwfilepath+".sorted")
-	sorteddtwfile = open(dtwfilepath+".sorted","w")
+	sorteddtwfile = open(dtwfilepath+".sorted","a")
 	for data in dtwdatas:
 		print(data)
 		sorteddtwfile.write(str(data)+"\n")

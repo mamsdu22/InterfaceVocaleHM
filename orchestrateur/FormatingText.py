@@ -4,8 +4,9 @@ import os
 import fileinput
 #script, filename = argv
 script = argv[0]
-filename = argv[1]
-number_line = int(argv[2])
+curDir = argv[1]
+filename = argv[2]
+number_line = int(argv[3])
 
 #txt = open(filename)
 #channel_values = open(filename).read().split("\n")
@@ -15,9 +16,6 @@ number_line = int(argv[2])
 #print channel_values
 
 
-
-curDir = os.path.dirname(os.path.realpath(__file__))
-print curDir
 
 dirname = "folder"
 sentencedirname = "sentences"

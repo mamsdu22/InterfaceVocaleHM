@@ -30,7 +30,7 @@ if __name__=="__main__":
 	if etape == "formalisation":
 		# Job formalisation
 		etatJobFormalisation = 0
-		cmdJobFormalisation = "python FormatingText.py " + dossier_application + "/eval_text_partial.txt 100"
+		cmdJobFormalisation = "python FormatingText.py " + dossier_application + " " + os.getcwd() + "/eval_text_partial.txt 100"
 		runBashCmd(cmdJobFormalisation)
 		etatJobFormalisation = 1
 
@@ -156,4 +156,4 @@ if __name__=="__main__":
 		p.start()
 		p.join()
 		os.remove(chemin_finalranking)
-		# Résultat final stockée dans "dtw/final_ranking.sorted"
+		# Resultat final stocke dans "dtw/final_ranking.sorted"

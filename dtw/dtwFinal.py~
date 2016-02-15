@@ -107,7 +107,7 @@ if __name__=="__main__":
 	print(mfcc2)
 	
 	dist, cost, path = dtw(mfcc1, mfcc2, dist=lambda mfcc1, mfcc2: norm(mfcc1 - mfcc2, ord=1))
-	#dist = 0.3	
+	#dist = 0.3 	
 	print 'Minimum distance found:', dist
 
 	nom_mfcc1 = os.path.basename(chemin_mfcc1)
